@@ -15,6 +15,7 @@
 		548CE068234D340700B5177D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 548CE067234D340700B5177D /* Assets.xcassets */; };
 		B78481A623E4BD7B00EE04B4 /* WeatherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78481A523E4BD7B00EE04B4 /* WeatherController.swift */; };
 		B78481A823E4BD8900EE04B4 /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78481A723E4BD8900EE04B4 /* FavoritesController.swift */; };
+		B7ED502D23E4C66E00FF8D28 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED502C23E4C66E00FF8D28 /* WeatherView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		548CE067234D340700B5177D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B78481A523E4BD7B00EE04B4 /* WeatherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherController.swift; sourceTree = "<group>"; };
 		B78481A723E4BD8900EE04B4 /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
+		B7ED502C23E4C66E00FF8D28 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				548CE051234D33B500B5177D /* AppDelegate.swift */,
 				548CE053234D33B500B5177D /* SceneDelegate.swift */,
 				548CE065234D33E600B5177D /* ZipCodeHelper.swift */,
+				B7ED502C23E4C66E00FF8D28 /* WeatherView.swift */,
 				B78481A923E4BD9100EE04B4 /* VC's */,
 				548CE05C234D33B600B5177D /* LaunchScreen.storyboard */,
 				548CE067234D340700B5177D /* Assets.xcassets */,
@@ -156,6 +159,7 @@
 				548CE052234D33B500B5177D /* AppDelegate.swift in Sources */,
 				548CE054234D33B500B5177D /* SceneDelegate.swift in Sources */,
 				B78481A623E4BD7B00EE04B4 /* WeatherController.swift in Sources */,
+				B7ED502D23E4C66E00FF8D28 /* WeatherView.swift in Sources */,
 				B78481A823E4BD8900EE04B4 /* FavoritesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
