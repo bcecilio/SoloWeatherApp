@@ -11,6 +11,14 @@ import UIKit
 class WeatherController: UIViewController {
     
     private let weatherView = WeatherView()
+    var weatherData = [Weather]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.weatherView.collectionView.reloadData()
+            }
+        }
+    }
+    var zipcodeQuery = ""
     
     override func loadView() {
         view = weatherView
@@ -23,10 +31,13 @@ class WeatherController: UIViewController {
         weatherView.collectionView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
+        weatherView.textField.delegate = self
     }
     
-    private func loadData() {
-        
+    private func loadData(zipcodeQuery: String) {
+        WeatherAPIClient.getWeather(zipCodeQuery: zipcodeQuery) { (result) in
+            <#code#>
+        }
     }
 }
 
@@ -47,5 +58,15 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
         let maxSize: CGSize = UIScreen.main.bounds.size
         let itemWidth: CGFloat = maxSize.width * 0.6
         return CGSize(width: itemWidth, height: 120)
+    }
+}
+
+extension WeatherController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let searchText = textField.text else {
+            print("no text")
+            return true
+        }
+        zipcodeQuery = searchText
     }
 }

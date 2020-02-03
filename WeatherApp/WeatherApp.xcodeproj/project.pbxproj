@@ -19,6 +19,8 @@
 		B7E4B77E23E8B0D00067CC6C /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4B77D23E8B0D00067CC6C /* WeatherData.swift */; };
 		B7E4B78023E8B35A0067CC6C /* WeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4B77F23E8B35A0067CC6C /* WeatherAPIClient.swift */; };
 		B7E4B78323E8B3FA0067CC6C /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = B7E4B78223E8B3FA0067CC6C /* ImageKit */; };
+		B7E4B78523E8B9490067CC6C /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4B78423E8B9490067CC6C /* DetailController.swift */; };
+		B7E4B78723E8B95A0067CC6C /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7E4B78623E8B95A0067CC6C /* Detail.storyboard */; };
 		B7ED502D23E4C66E00FF8D28 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED502C23E4C66E00FF8D28 /* WeatherView.swift */; };
 		B7ED502F23E4CDE800FF8D28 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED502E23E4CDE800FF8D28 /* FavoritesView.swift */; };
 		B7ED503323E4CE2C00FF8D28 /* WeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7ED503223E4CE2C00FF8D28 /* WeatherCell.xib */; };
@@ -39,6 +41,8 @@
 		B7E4B77A23E8B0120067CC6C /* SecretsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsKey.swift; sourceTree = "<group>"; };
 		B7E4B77D23E8B0D00067CC6C /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		B7E4B77F23E8B35A0067CC6C /* WeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIClient.swift; sourceTree = "<group>"; };
+		B7E4B78423E8B9490067CC6C /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
+		B7E4B78623E8B95A0067CC6C /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		B7ED502C23E4C66E00FF8D28 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		B7ED502E23E4CDE800FF8D28 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		B7ED503223E4CE2C00FF8D28 /* WeatherCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherCell.xib; sourceTree = "<group>"; };
@@ -84,6 +88,7 @@
 				B7ED503023E4CDF700FF8D28 /* Views */,
 				B78481A923E4BD9100EE04B4 /* VC's */,
 				548CE05C234D33B600B5177D /* LaunchScreen.storyboard */,
+				B7E4B78623E8B95A0067CC6C /* Detail.storyboard */,
 				548CE067234D340700B5177D /* Assets.xcassets */,
 				548CE05F234D33B600B5177D /* Info.plist */,
 				B7E4B77C23E8B0340067CC6C /* Secrets */,
@@ -95,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				B78481A523E4BD7B00EE04B4 /* WeatherController.swift */,
+				B7E4B78423E8B9490067CC6C /* DetailController.swift */,
 				B78481A723E4BD8900EE04B4 /* FavoritesController.swift */,
 				548CE055234D33B500B5177D /* ViewController.swift */,
 			);
@@ -195,6 +201,7 @@
 				548CE05E234D33B600B5177D /* LaunchScreen.storyboard in Resources */,
 				548CE068234D340700B5177D /* Assets.xcassets in Resources */,
 				B7ED503323E4CE2C00FF8D28 /* WeatherCell.xib in Resources */,
+				B7E4B78723E8B95A0067CC6C /* Detail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +220,7 @@
 				B7E4B77E23E8B0D00067CC6C /* WeatherData.swift in Sources */,
 				B7E4B78023E8B35A0067CC6C /* WeatherAPIClient.swift in Sources */,
 				B7E4B77B23E8B0120067CC6C /* SecretsKey.swift in Sources */,
+				B7E4B78523E8B9490067CC6C /* DetailController.swift in Sources */,
 				B7ED502F23E4CDE800FF8D28 /* FavoritesView.swift in Sources */,
 				B78481A623E4BD7B00EE04B4 /* WeatherController.swift in Sources */,
 				B7ED502D23E4C66E00FF8D28 /* WeatherView.swift in Sources */,
