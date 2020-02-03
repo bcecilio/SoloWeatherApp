@@ -44,6 +44,13 @@
                 </subviews>
             </collectionViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="dateLabel" destination="0wX-xU-krJ" id="C8r-Ro-JfO"/>
+                <outlet property="highLabel" destination="8tq-aq-90V" id="0Qx-ka-p0L"/>
+                <outlet property="lowLabel" destination="aic-iE-vc0" id="ixE-FM-H0V"/>
+                <outlet property="weatherImageView" destination="Wz8-Wl-LAa" id="inN-iO-Q2S"/>
+                <outlet property="weatherLabel" destination="Wz8-Wl-LAa" id="drr-gp-Jfi"/>
+            </connections>
             <point key="canvasLocation" x="153.62318840579712" y="93.75"/>
         </collectionViewCell>
     </objects>

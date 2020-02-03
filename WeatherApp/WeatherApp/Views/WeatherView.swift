@@ -21,8 +21,10 @@ class WeatherView: UIView {
     }()
     
     public lazy var collectionView: UICollectionView = {
-        let collection = UICollectionView()
-        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collection.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         return collection
     }()
     
@@ -55,8 +57,9 @@ class WeatherView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalToSystemSpacingBelow: textField.bottomAnchor, multiplier: 20),
-            collectionView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 10),
-            collectionView.trailingAnchor.constraint(equalToSystemSpacingAfter: trailingAnchor, multiplier: -10)
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
 }
