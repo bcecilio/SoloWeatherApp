@@ -36,7 +36,12 @@ class WeatherController: UIViewController {
     
     private func loadData(zipcodeQuery: String) {
         WeatherAPIClient.getWeather(zipCodeQuery: zipcodeQuery) { (result) in
-            <#code#>
+            switch result {
+            case .failure(let appError):
+                print("\(appError)")
+            case .success(let weather):
+                self.weatherData = weather
+            }
         }
     }
 }
@@ -56,8 +61,12 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxSize: CGSize = UIScreen.main.bounds.size
-        let itemWidth: CGFloat = maxSize.width * 0.6
-        return CGSize(width: itemWidth, height: 120)
+        let itemWidth: CGFloat = maxSize.width * 1.0
+        return CGSize(width: itemWidth, height: 450)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
     }
 }
 
@@ -68,5 +77,6 @@ extension WeatherController: UITextFieldDelegate {
             return true
         }
         zipcodeQuery = searchText
+        return true
     }
 }

@@ -12,6 +12,7 @@ import NetworkHelper
 struct WeatherAPIClient {
     static func getWeather(zipCodeQuery: String, completion: @escaping (Result<[Weather], AppError>) -> ()) {
         let endpointURL = "https://api.darksky.net/forecast/9fb817c1de2067d841b72f0f5757717f/\(zipCodeQuery)"
+        
         guard let url = URL(string: endpointURL) else {
             completion(.failure(.badURL(endpointURL)))
             return
