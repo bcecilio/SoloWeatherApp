@@ -9,22 +9,29 @@
 import UIKit
 
 class DetailController: UIViewController {
+    
+    @IBOutlet weak var placenameLabel: UILabel!
+    @IBOutlet weak var sunriseLabel: UILabel!
+    @IBOutlet weak var sunsetLabel: UILabel!
+    @IBOutlet weak var highLabel: UILabel!
+    @IBOutlet weak var lowLabel: UILabel!
+    @IBOutlet weak var windspeedLabel: UILabel!
+    
+    private var detailData: DailyDatum!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func updateUI() {
+        guard let data = detailData else {
+            print("data no found hehehe")
+            return
+        }
+        sunriseLabel.text = data.sunriseTime.description
+        sunsetLabel.text = data.sunsetTime.description
+        highLabel.text = data.temperatureHigh.description
+        lowLabel.text = data.temperatureLow.description
     }
-    */
-
 }

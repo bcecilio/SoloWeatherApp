@@ -10,6 +10,8 @@ import UIKit
 
 class WeatherController: UIViewController {
     
+    @IBOutlet weak var placenameLabel: UILabel!
+    
     private let weatherView = WeatherView()
     
     var weatherData = [DailyDatum]() {
@@ -40,6 +42,13 @@ class WeatherController: UIViewController {
         loadData(zipcodeQuery: zipcodeQuery)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailVC = segue.destination as? DetailController, let indexPath = weatherView.collectionView.indexPathsForSelectedItems!.first else {
+            return
+        }
+        detailVC.detailData = weatherData[indexPath.row]
+    }
+    
     private func getWeather(lat: Double, long: Double, placeName: String) {
         WeatherAPIClient.getWeather(lat: lat, long: long) { [weak self] (result) in
             switch result {
@@ -58,6 +67,7 @@ class WeatherController: UIViewController {
                 print("\(fetchingError)")
             case .success(let location):
                 self?.getWeather(lat: location.lat, long: location.long, placeName: location.placeName)
+                self?.placenameLabel.text = location.placeName
             }
         }
     }
