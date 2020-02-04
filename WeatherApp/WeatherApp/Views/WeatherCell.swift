@@ -15,10 +15,9 @@ class WeatherCell: UICollectionViewCell {
     @IBOutlet weak var highLabel: UILabel!
     @IBOutlet weak var lowLabel: UILabel!
     
-    public func configureCell() {
-        weatherImageView.image = UIImage(systemName: "cloud.drizzle")
-        highLabel.text = "High: 100"
-        lowLabel.text = "Low: 40"
+    public func configureCell(weatherData: DailyDatum) {
+//        highLabel.text = weatherData.temperatureHigh.description
+//        lowLabel.text = weatherData.temperatureLow.description
         dateLabel.text = "02/03"
     }
 }

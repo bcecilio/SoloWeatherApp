@@ -11,14 +11,19 @@ import UIKit
 class WeatherController: UIViewController {
     
     private let weatherView = WeatherView()
-    var weatherData = [Weather]() {
+    
+    var weatherData = [DailyDatum]() {
         didSet {
             DispatchQueue.main.async {
                 self.weatherView.collectionView.reloadData()
             }
         }
     }
-    var zipcodeQuery = ""
+    var zipcodeQuery = "11377" {
+        didSet {
+            loadData(zipcodeQuery: zipcodeQuery)
+        }
+    }
     
     override func loadView() {
         view = weatherView
@@ -32,15 +37,27 @@ class WeatherController: UIViewController {
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.textField.delegate = self
+        loadData(zipcodeQuery: zipcodeQuery)
     }
     
-    private func loadData(zipcodeQuery: String) {
-        WeatherAPIClient.getWeather(zipCodeQuery: zipcodeQuery) { (result) in
+    private func getWeather(lat: Double, long: Double, placeName: String) {
+        WeatherAPIClient.getWeather(lat: lat, long: long) { [weak self] (result) in
             switch result {
             case .failure(let appError):
                 print("\(appError)")
             case .success(let weather):
-                self.weatherData = weather
+                self?.weatherData = weather.daily.data
+            }
+        }
+    }
+    
+    private func loadData(zipcodeQuery: String) {
+        ZipCodeHelper.getLatLong(fromZipCode: zipcodeQuery) { [weak self] (result) in
+            switch result {
+            case .failure(let fetchingError):
+                print("\(fetchingError)")
+            case .success(let location):
+                self?.getWeather(lat: location.lat, long: location.long, placeName: location.placeName)
             }
         }
     }
@@ -55,6 +72,8 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCell else {
             fatalError("could not dequeue WeatherCell")
         }
+        let weatherCell = weatherData[indexPath.row]
+        cell.configureCell(weatherData: weatherCell)
         cell.layer.cornerRadius = 7
         return cell
     }
