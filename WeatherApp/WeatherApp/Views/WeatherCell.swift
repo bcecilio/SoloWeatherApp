@@ -16,8 +16,8 @@ class WeatherCell: UICollectionViewCell {
     @IBOutlet weak var lowLabel: UILabel!
     
     public func configureCell(weatherData: DailyDatum) {
-//        highLabel.text = weatherData.temperatureHigh.description
-//        lowLabel.text = weatherData.temperatureLow.description
+        highLabel.text = "High: \(weatherData.temperatureHigh.description)"
+        lowLabel.text = "Low: \(weatherData.temperatureLow.description)"
         dateLabel.text = "02/03"
     }
 }

@@ -19,7 +19,7 @@ class WeatherController: UIViewController {
             }
         }
     }
-    var zipcodeQuery = "11377" {
+    var zipcodeQuery = "90210" {
         didSet {
             loadData(zipcodeQuery: zipcodeQuery)
         }
@@ -65,7 +65,7 @@ class WeatherController: UIViewController {
 
 extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return weatherData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -91,6 +91,7 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
 
 extension WeatherController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        resignFirstResponder()
         guard let searchText = textField.text else {
             print("no text")
             return true
