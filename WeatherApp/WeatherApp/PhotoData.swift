@@ -11,6 +11,6 @@ import Foundation
 struct PictureHits: Codable {
     let hits: [Picture]
 }
-struct Picture: Codable {
+struct Picture: Codable, Equatable {
     let largeImageURL: String
 }
