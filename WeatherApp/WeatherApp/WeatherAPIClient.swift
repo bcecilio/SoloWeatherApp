@@ -36,7 +36,7 @@ struct WeatherAPIClient {
     }
     
     static func getPhotos(photos: String, completion: @escaping (Result<[Picture], AppError>) -> ()) {
-        let endpointURL = "https://pixabay.com/api/?key=14937007-dcbfa908ac4092d4eac3223ed&q=\(photos)"
+        let endpointURL = "https://pixabay.com/api/?key=14937007-dcbfa908ac4092d4eac3223ed&q=NewYork"
         
         guard let url = URL(string: endpointURL) else {
             completion(.failure(.badURL(endpointURL)))

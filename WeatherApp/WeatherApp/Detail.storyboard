@@ -72,6 +72,7 @@
                     </view>
                     <connections>
                         <outlet property="highLabel" destination="al6-wb-RWW" id="UcW-7e-Uiv"/>
+                        <outlet property="imageView" destination="YD2-wa-clN" id="qZh-Zo-Qb0"/>
                         <outlet property="lowLabel" destination="mfl-Af-gxI" id="szH-7e-m1M"/>
                         <outlet property="placenameLabel" destination="Mtl-s0-mAY" id="HEt-Iq-Kbv"/>
                         <outlet property="sunriseLabel" destination="peR-lf-W5F" id="0xt-Y2-98K"/>

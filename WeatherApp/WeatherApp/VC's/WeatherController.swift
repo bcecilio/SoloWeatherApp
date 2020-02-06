@@ -41,10 +41,10 @@ class WeatherController: UIViewController {
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.textField.delegate = self
-        loadData(zipcodeQuery: "90210")
+        loadData(zipcodeQuery: "10023")
     }
     
-    private func getWeather(lat: Double, long: Double, placeName: String) {
+    private func getWeather(lat: Double, long: Double) {
         WeatherAPIClient.getWeather(lat: lat, long: long) { [weak self] (result) in
             switch result {
             case .failure(let appError):
@@ -61,7 +61,10 @@ class WeatherController: UIViewController {
             case .failure(let fetchingError):
                 print("\(fetchingError)")
             case .success(let location):
-                self?.getWeather(lat: location.lat, long: location.long, placeName: location.placeName)
+                self?.getWeather(lat: location.lat, long: location.long)
+                DispatchQueue.main.async {
+                    self?.loadPhotos(photos: location.placeName)
+                }
 //                self?.placenameLabel.text = location.placeName
             }
         }
@@ -110,6 +113,7 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
             fatalError("could not downcast to DETAILCONTROLLER")
         }
         detailVC.detailData = weatherData[indexPath.row]
+        detailVC.detailImage = photos[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
@@ -117,11 +121,11 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
 extension WeatherController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        guard let searchText = textField.text else {
-            print("no text")
-            return true
-        }
-        zipcodeQuery = searchText
+//        guard let searchText = textField.text else {
+//            print("no text")
+//            return true
+//        }
+        zipcodeQuery = textField.text ?? ""
         return true
     }
 }
