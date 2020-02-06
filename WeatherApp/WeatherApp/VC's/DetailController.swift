@@ -29,10 +29,11 @@ class DetailController: UIViewController {
             print("data no found hehehe")
             return
         }
-        sunriseLabel.text = data.sunriseTime.description
-        sunsetLabel.text = data.sunsetTime.description
-        highLabel.text = data.temperatureHigh.description
-        lowLabel.text = data.temperatureLow.description
+        sunriseLabel.text = "Sundrise: \(data.sunriseTime.description)"
+        sunsetLabel.text = "Sunset: \(data.sunsetTime.description)"
+        highLabel.text = "High: \(data.temperatureHigh.description)"
+        lowLabel.text = "Low: \(data.temperatureLow.description)"
+        windspeedLabel.text = "Windspeed: \(data.windSpeed.description)"
     }
 }
 

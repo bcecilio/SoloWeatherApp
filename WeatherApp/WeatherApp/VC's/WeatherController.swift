@@ -44,13 +44,6 @@ class WeatherController: UIViewController {
         loadData(zipcodeQuery: "90210")
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let detailVC = segue.destination as? DetailController, let indexPath = weatherView.collectionView.indexPathsForSelectedItems!.first else {
-            return
-        }
-        detailVC.detailData = weatherData[indexPath.row]
-    }
-    
     private func getWeather(lat: Double, long: Double, placeName: String) {
         WeatherAPIClient.getWeather(lat: lat, long: long) { [weak self] (result) in
             switch result {
@@ -109,6 +102,15 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailStoryboard = UIStoryboard(name: "Detail", bundle: nil)
+        guard let detailVC = detailStoryboard.instantiateViewController(identifier: "DetailController") as? DetailController else {
+            fatalError("could not downcast to DETAILCONTROLLER")
+        }
+        detailVC.detailData = weatherData[indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
