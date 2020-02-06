@@ -17,7 +17,7 @@ class DetailController: UIViewController {
     @IBOutlet weak var lowLabel: UILabel!
     @IBOutlet weak var windspeedLabel: UILabel!
     
-    private var detailData: DailyDatum!
+    var detailData: DailyDatum!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,5 +33,26 @@ class DetailController: UIViewController {
         sunsetLabel.text = data.sunsetTime.description
         highLabel.text = data.temperatureHigh.description
         lowLabel.text = data.temperatureLow.description
+    }
+}
+
+extension Double {
+    func convertDate() -> String {
+        let date = Date(timeIntervalSince1970: self)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = DateFormatter.Style.medium
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        dateFormatter.timeZone = .current
+        let localDate = dateFormatter.string(from: date)
+        return localDate
+    }
+    func convertTime() -> String {
+        let date = Date(timeIntervalSince1970: self)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = DateFormatter.Style.medium
+        dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.timeZone = .current
+        let localDate = dateFormatter.string(from: date)
+        return localDate
     }
 }

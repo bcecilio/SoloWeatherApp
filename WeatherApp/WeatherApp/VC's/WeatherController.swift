@@ -14,6 +14,8 @@ class WeatherController: UIViewController {
     
     private let weatherView = WeatherView()
     
+    private var photos = [Picture]()
+    
     var weatherData = [DailyDatum]() {
         didSet {
             DispatchQueue.main.async {
@@ -21,7 +23,7 @@ class WeatherController: UIViewController {
             }
         }
     }
-    var zipcodeQuery = "90210" {
+    var zipcodeQuery = String() {
         didSet {
             loadData(zipcodeQuery: zipcodeQuery)
         }
@@ -39,7 +41,7 @@ class WeatherController: UIViewController {
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.textField.delegate = self
-        loadData(zipcodeQuery: zipcodeQuery)
+        loadData(zipcodeQuery: "90210")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -60,14 +62,25 @@ class WeatherController: UIViewController {
         }
     }
     
-    private func loadData(zipcodeQuery: String) {
+    public func loadData(zipcodeQuery: String) {
         ZipCodeHelper.getLatLong(fromZipCode: zipcodeQuery) { [weak self] (result) in
             switch result {
             case .failure(let fetchingError):
                 print("\(fetchingError)")
             case .success(let location):
                 self?.getWeather(lat: location.lat, long: location.long, placeName: location.placeName)
-                self?.placenameLabel.text = location.placeName
+//                self?.placenameLabel.text = location.placeName
+            }
+        }
+    }
+    
+    public func loadPhotos(photos: String) {
+        WeatherAPIClient.getPhotos(photos: photos) { (result) in
+            switch result {
+            case .failure(let appError):
+                print("\(appError)")
+            case .success(let photos):
+                self.photos = photos
             }
         }
     }

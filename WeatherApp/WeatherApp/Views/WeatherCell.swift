@@ -18,6 +18,6 @@ class WeatherCell: UICollectionViewCell {
     public func configureCell(weatherData: DailyDatum) {
         highLabel.text = "High: \(weatherData.temperatureHigh.description)"
         lowLabel.text = "Low: \(weatherData.temperatureLow.description)"
-        dateLabel.text = "02/03"
+        dateLabel.text = weatherData.time.convertDate()
     }
 }

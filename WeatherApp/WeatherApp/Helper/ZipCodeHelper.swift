@@ -1,5 +1,6 @@
 import UIKit
 import CoreLocation
+
 enum LocationFetchingError: Error {
     case error(Error)
     case noErrorMessage

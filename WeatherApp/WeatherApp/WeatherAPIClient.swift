@@ -34,4 +34,27 @@ struct WeatherAPIClient {
             }
         }
     }
+    
+    static func getPhotos(photos: String, completion: @escaping (Result<[Picture], AppError>) -> ()) {
+        let endpointURL = "https://pixabay.com/api/?key=14937007-dcbfa908ac4092d4eac3223ed&q=\(photos)"
+        
+        guard let url = URL(string: endpointURL) else {
+            completion(.failure(.badURL(endpointURL)))
+            return
+        }
+        let request = URLRequest(url: url)
+        NetworkHelper.shared.performDataTask(with: request) { (result) in
+            switch result {
+            case .failure(let appError):
+                completion(.failure(.networkClientError(appError)))
+            case .success(let data):
+                do {
+                    let data = try JSONDecoder().decode(PictureHits.self, from: data)
+                    completion(.success(data.hits))
+                } catch {
+                    completion(.failure(.decodingError(error)))
+                }
+            }
+        }
+    }
 }
