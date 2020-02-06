@@ -14,7 +14,7 @@ class WeatherView: UIView {
         let field = UITextField()
         field.placeholder = "Enter Zip Code"
         field.borderStyle = UITextField.BorderStyle.roundedRect
-        field.keyboardType = UIKeyboardType.numberPad
+        field.keyboardType = UIKeyboardType.numbersAndPunctuation
         field.returnKeyType = UIReturnKeyType.done
         field.textAlignment = .center
         return field
