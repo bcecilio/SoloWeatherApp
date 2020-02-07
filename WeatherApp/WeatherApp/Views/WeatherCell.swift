@@ -19,5 +19,10 @@ class WeatherCell: UICollectionViewCell {
         highLabel.text = "High: \(weatherData.temperatureHigh.description)"
         lowLabel.text = "Low: \(weatherData.temperatureLow.description)"
         dateLabel.text = weatherData.time.convertDate()
+        if weatherData.temperatureHigh > 55.0 {
+            weatherImageView.image = UIImage(named: "clear-day")
+        } else if weatherData.temperatureHigh < 55.0 {
+            weatherImageView.image = UIImage(named: "cloudyn")
+        }
     }
 }

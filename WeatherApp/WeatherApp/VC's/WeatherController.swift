@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DataPersistence
 
 class WeatherController: UIViewController {
     
@@ -16,6 +17,8 @@ class WeatherController: UIViewController {
     
     private var photos = [Picture]()
     
+    public var dataPersistence: DataPersistence<Picture>!
+    
     var weatherData = [DailyDatum]() {
         didSet {
             DispatchQueue.main.async {
@@ -23,7 +26,7 @@ class WeatherController: UIViewController {
             }
         }
     }
-    var zipcodeQuery = String() {
+    var zipcodeQuery = "11377" {
         didSet {
             loadData(zipcodeQuery: zipcodeQuery)
         }
@@ -41,7 +44,7 @@ class WeatherController: UIViewController {
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.textField.delegate = self
-        loadData(zipcodeQuery: "10023")
+        loadData(zipcodeQuery: zipcodeQuery)
     }
     
     private func getWeather(lat: Double, long: Double) {
@@ -55,6 +58,20 @@ class WeatherController: UIViewController {
         }
     }
     
+    public func loadPhotos(photos: String) {
+        WeatherAPIClient.getPhotos(photos: photos) { [weak self] (result) in
+            switch result {
+            case .failure(let appError):
+                print("\(appError)")
+            case .success(let photos):
+                DispatchQueue.main.async {
+                    self?.photos = photos
+                }
+            }
+        }
+    }
+
+    
     public func loadData(zipcodeQuery: String) {
         ZipCodeHelper.getLatLong(fromZipCode: zipcodeQuery) { [weak self] (result) in
             switch result {
@@ -62,24 +79,14 @@ class WeatherController: UIViewController {
                 print("\(fetchingError)")
             case .success(let location):
                 self?.getWeather(lat: location.lat, long: location.long)
+                self?.loadPhotos(photos: location.placeName)
                 DispatchQueue.main.async {
                     self?.loadPhotos(photos: location.placeName)
                 }
-//                self?.placenameLabel.text = location.placeName
             }
         }
     }
     
-    public func loadPhotos(photos: String) {
-        WeatherAPIClient.getPhotos(photos: photos) { (result) in
-            switch result {
-            case .failure(let appError):
-                print("\(appError)")
-            case .success(let photos):
-                self.photos = photos
-            }
-        }
-    }
 }
 
 extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -112,8 +119,10 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
         guard let detailVC = detailStoryboard.instantiateViewController(identifier: "DetailController") as? DetailController else {
             fatalError("could not downcast to DETAILCONTROLLER")
         }
+        let aPicture = photos[indexPath.row]
+        detailVC.detailImage = aPicture
+        detailVC.dataPersistence = dataPersistence
         detailVC.detailData = weatherData[indexPath.row]
-        detailVC.detailImage = photos[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

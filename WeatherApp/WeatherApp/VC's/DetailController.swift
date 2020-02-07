@@ -24,7 +24,7 @@ class DetailController: UIViewController {
     
     var detailImage: Picture!
     
-    private var dataPersistence: DataPersistence<Picture>!
+    public var dataPersistence: DataPersistence<Picture>!
 
     override func viewDidLoad() {
         super.viewDidLoad()

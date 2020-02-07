@@ -37,9 +37,9 @@ struct WeatherAPIClient {
     
     static func getPhotos(photos: String, completion: @escaping (Result<[Picture], AppError>) -> ()) {
         
-        let photoString = photos.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        let photoString = photos.lowercased().addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         
-        let endpointURL = "https://pixabay.com/api/?key=\(SecretKeys.pictureKey)=\(photoString ?? "11372")"
+        let endpointURL = "https://pixabay.com/api/?key=\(SecretKeys.pictureKey)&q=\(photoString ?? "11372")"
         
         guard let url = URL(string: endpointURL) else {
             completion(.failure(.badURL(endpointURL)))
