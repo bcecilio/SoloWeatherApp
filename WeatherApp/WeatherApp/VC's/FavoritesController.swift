@@ -28,7 +28,9 @@ class FavoritesController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
-        favoriteView.collectionView.register(FavoritesCell.self, forCellWithReuseIdentifier: "imageCell")
+        favoriteView.collectionView.register(UINib(nibName: "FavoriteCell", bundle: nil), forCellWithReuseIdentifier: "imageCell")
+        favoriteView.collectionView.dataSource = self
+        favoriteView.collectionView.delegate = self
         loadFavoritePictures()
     }
     
@@ -56,8 +58,15 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout, UICollectionV
             fatalError("could not downcast FavoritesCell")
         }
         let image = favoritedPhotos[indexPath.row]
-        cell.configureCell(image: image)
+        cell.configureCell(for: image)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let maxSize: CGSize = UIScreen.main.bounds.size
+        let itemHeight: CGFloat = maxSize.height * 0.20
+        let itemWidth: CGFloat = maxSize.width
+        return CGSize(width: itemWidth, height: itemHeight)
     }
 }
 

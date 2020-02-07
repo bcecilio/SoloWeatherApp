@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import ImageKit
 
 class FavoritesCell: UICollectionViewCell {
     
     @IBOutlet weak var favoriteImageView: UIImageView!
     
-    public func configureCell(image: Picture) {
-        favoriteImageView.getImage(with: image.largeImageURL.description) { [weak self] (result) in
+    public func configureCell(for image: Picture) {
+        favoriteImageView.getImage(with: image.largeImageURL) { [weak self] (result) in
             switch result {
             case .failure(_):
                 DispatchQueue.main.async {
