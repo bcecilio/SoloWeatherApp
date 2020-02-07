@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DataPersistence
 
 class FavoritesController: UIViewController {
     
@@ -50,3 +51,13 @@ class FavoritesController: UIViewController {
 //        <#code#>
 //    }
 //}
+
+extension FavoritesController: DataPersistenceDelegate {
+    func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
+        print("item was saved")
+    }
+    
+    func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
+        print("item was not saved")
+    }
+}

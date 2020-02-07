@@ -8,6 +8,7 @@
 
 import UIKit
 import ImageKit
+import DataPersistence
 
 class DetailController: UIViewController {
     
@@ -22,9 +23,12 @@ class DetailController: UIViewController {
     var detailData: DailyDatum!
     
     var detailImage: Picture!
+    
+    private var dataPersistence: DataPersistence<Picture>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveImageButtonPressed(_:)))
         updateUI()
     }
     
@@ -55,6 +59,18 @@ class DetailController: UIViewController {
             }
         }
     }
+    
+    @objc private func saveImageButtonPressed(_ sender: UIBarButtonItem) {
+        guard let savedImage = detailImage else {
+            return
+        }
+        do {
+            try dataPersistence.createItem(savedImage)
+        } catch {
+            print("error saving: \(error)")
+        }
+    }
+    
 }
 
 extension Double {
