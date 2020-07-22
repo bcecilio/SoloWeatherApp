@@ -66,3 +66,9 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# The .DS_Store file gets created by macOS, should not be pushed to github, adding to .gtiignore
+.DS_Store
+
+# ignore Secrets folder from Xcode
+Secrets/
