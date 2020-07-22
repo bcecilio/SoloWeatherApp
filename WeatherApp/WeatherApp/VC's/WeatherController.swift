@@ -130,10 +130,6 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
 extension WeatherController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-//        guard let searchText = textField.text else {
-//            print("no text")
-//            return true
-//        }
         zipcodeQuery = textField.text ?? ""
         return true
     }

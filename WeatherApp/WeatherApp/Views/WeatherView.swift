@@ -12,7 +12,7 @@ class WeatherView: UIView {
 
     public lazy var textField: UITextField = {
         let field = UITextField()
-        field.placeholder = "Enter Zip Code"
+        field.placeholder = "Enter Zip Code or City"
         field.borderStyle = UITextField.BorderStyle.roundedRect
         field.keyboardType = UIKeyboardType.numbersAndPunctuation
         field.returnKeyType = UIReturnKeyType.done

@@ -21,7 +21,6 @@ class DetailController: UIViewController {
     @IBOutlet weak var windspeedLabel: UILabel!
     
     var detailData: DailyDatum!
-    
     var detailImage: Picture!
     
     public var dataPersistence: DataPersistence<Picture>!

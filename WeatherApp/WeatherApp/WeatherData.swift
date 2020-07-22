@@ -18,6 +18,7 @@ struct Daily: Codable {
 }
 
 struct DailyDatum: Codable {
+    let timezone: String?
     let time: Double
     let temperatureHigh: Double
     let temperatureLow: Double
