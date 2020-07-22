@@ -16,8 +16,8 @@ class WeatherCell: UICollectionViewCell {
     @IBOutlet weak var lowLabel: UILabel!
     
     public func configureCell(weatherData: DailyDatum) {
-        highLabel.text = "High: \(weatherData.temperatureHigh.description)"
-        lowLabel.text = "Low: \(weatherData.temperatureLow.description)"
+        highLabel.text = "High: \(weatherData.temperatureHigh)"
+        lowLabel.text = "Low: \(weatherData.temperatureLow)"
         dateLabel.text = weatherData.time.convertDate()
         if weatherData.temperatureHigh > 55.0 {
             weatherImageView.image = UIImage(named: "clear-day")

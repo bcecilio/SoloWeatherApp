@@ -41,6 +41,7 @@ class DetailController: UIViewController {
             print("no image in detail")
             return
         }
+        placenameLabel.text = data.summary
         sunriseLabel.text = "Sundrise: \(data.sunriseTime.description)"
         sunsetLabel.text = "Sunset: \(data.sunsetTime.description)"
         highLabel.text = "High: \(data.temperatureHigh.description)"
