@@ -67,6 +67,8 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
+iOSInjectionProject/
+
 # The .DS_Store file gets created by macOS, should not be pushed to github, adding to .gtiignore
 .DS_Store
 
