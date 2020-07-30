@@ -11,7 +11,7 @@ import NetworkHelper
 
 struct WeatherAPIClient {
     static func getWeather(lat: Double, long: Double, completion: @escaping (Result<Weather, AppError>) -> ()) {
-        let endpointURL = "https://api.darksky.net/forecast/9fb817c1de2067d841b72f0f5757717f/\(lat),\(long)"
+        let endpointURL = "https://api.darksky.net/forecast/\(SecretKeys.appKey)/\(lat),\(long)"
         
         guard let url = URL(string: endpointURL) else {
             completion(.failure(.badURL(endpointURL)))
