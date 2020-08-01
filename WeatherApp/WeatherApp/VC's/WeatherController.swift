@@ -26,9 +26,10 @@ class WeatherController: UIViewController {
             }
         }
     }
-    var zipcodeQuery = "11377" {
+    var zipcodeQuery = Location.location {
         didSet {
-            loadData(zipcodeQuery: zipcodeQuery)
+            loadData(zipcodeQuery: Location.location.rawValue)
+            UserSettings.shared.updateUserLocation(with: zipcodeQuery)
         }
     }
     
@@ -44,7 +45,7 @@ class WeatherController: UIViewController {
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.textField.delegate = self
-        loadData(zipcodeQuery: zipcodeQuery)
+        loadData(zipcodeQuery: zipcodeQuery.rawValue)
     }
     
     private func getWeather(lat: Double, long: Double) {
@@ -130,7 +131,7 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
 extension WeatherController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        zipcodeQuery = textField.text ?? ""
+        zipcodeQuery = Location(rawValue: textField.text ?? "")!
         return true
     }
 }
