@@ -26,10 +26,10 @@ class WeatherController: UIViewController {
             }
         }
     }
-    var zipcodeQuery = Location.location {
+    var zipcodeQuery = "" {
         didSet {
-            loadData(zipcodeQuery: Location.location.rawValue)
-            UserSettings.shared.updateUserLocation(with: zipcodeQuery)
+            UserDefaults.standard.set(zipcodeQuery, forKey: "zipcodeQuery")
+            loadData(zipcodeQuery: zipcodeQuery)
         }
     }
     
@@ -45,7 +45,17 @@ class WeatherController: UIViewController {
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
         weatherView.textField.delegate = self
-        loadData(zipcodeQuery: zipcodeQuery.rawValue)
+        weatherView.textField.text = zipcodeQuery
+        loadData(zipcodeQuery: zipcodeQuery)
+        zipcodeQuery = UserDefaults.standard.object(forKey: "zipcodeQuery") as? String ?? "11372"
+//        updateLocation()
+    }
+    
+    private func updateLocation() {
+
+        if let location = UserSettings.shared.getLocation() {
+            zipcodeQuery = location.rawValue
+        }
     }
     
     private func getWeather(lat: Double, long: Double) {
@@ -131,7 +141,13 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
 extension WeatherController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        zipcodeQuery = Location(rawValue: textField.text ?? "")!
+        guard let zipcode = textField.text else {
+            loadData(zipcodeQuery: zipcodeQuery)
+            return true
+        }
+        zipcodeQuery = zipcode
+//        zipcodeQuery = UserDefaults.standard.object(forKey: "zipcodeQuery") as? String ?? "11372"
+//        updateLocation()
         return true
     }
 }

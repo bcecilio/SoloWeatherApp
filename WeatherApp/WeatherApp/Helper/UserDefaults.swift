@@ -9,7 +9,7 @@
 import Foundation
 
 enum Location: String {
-    case location = "Saved"
+    case location = ""
 }
 
 struct UserPreference {
@@ -27,5 +27,14 @@ class UserSettings {
     func updateUserLocation(with location: Location) {
         
         standard.set(location.rawValue, forKey: UserPreference.location)
+    }
+    
+    func getLocation() -> Location? {
+        
+        guard let location = standard.object(forKey: UserPreference.location) as? String else {
+            return nil
+        }
+        
+        return Location(rawValue: location)
     }
 }
