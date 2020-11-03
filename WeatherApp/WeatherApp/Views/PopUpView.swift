@@ -54,7 +54,7 @@ class PopUpView: UIView {
     }
     
     private func commonInit() {
-        self.backgroundColor = .gray
+//        self.backgroundColor = .systemGray3
         setupContainer()
     }
 

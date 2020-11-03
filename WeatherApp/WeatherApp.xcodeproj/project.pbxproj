@@ -113,22 +113,54 @@
 		548CE050234D33B500B5177D /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				548CE051234D33B500B5177D /* AppDelegate.swift */,
-				548CE053234D33B500B5177D /* SceneDelegate.swift */,
-				B74FEE1A23ECCC320099E6A3 /* PersistanceHelper.swift */,
-				B7E4B77D23E8B0D00067CC6C /* WeatherData.swift */,
-				B74FEE1623ECA5680099E6A3 /* PhotoData.swift */,
-				B7E4B77F23E8B35A0067CC6C /* WeatherAPIClient.swift */,
+				B73712382551D1FC00F1FBDB /* SupportingFiles */,
+				B73712352551D1D800F1FBDB /* PersistanceHelper */,
+				B73712322551D1CE00F1FBDB /* Models */,
+				B737122F2551D1C200F1FBDB /* NetworkHelper */,
 				B7ED503123E4CE0300FF8D28 /* Helper */,
 				B7ED503023E4CDF700FF8D28 /* Views */,
 				B78481A923E4BD9100EE04B4 /* VC's */,
-				548CE05C234D33B600B5177D /* LaunchScreen.storyboard */,
-				B7E4B78623E8B95A0067CC6C /* Detail.storyboard */,
 				548CE05F234D33B600B5177D /* Info.plist */,
 				B74FEE1823ECBB450099E6A3 /* Assets.xcassets */,
 				B7E4B77C23E8B0340067CC6C /* Secrets */,
 			);
 			path = WeatherApp;
+			sourceTree = "<group>";
+		};
+		B737122F2551D1C200F1FBDB /* NetworkHelper */ = {
+			isa = PBXGroup;
+			children = (
+				B7E4B77F23E8B35A0067CC6C /* WeatherAPIClient.swift */,
+			);
+			path = NetworkHelper;
+			sourceTree = "<group>";
+		};
+		B73712322551D1CE00F1FBDB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B7E4B77D23E8B0D00067CC6C /* WeatherData.swift */,
+				B74FEE1623ECA5680099E6A3 /* PhotoData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B73712352551D1D800F1FBDB /* PersistanceHelper */ = {
+			isa = PBXGroup;
+			children = (
+				B74FEE1A23ECCC320099E6A3 /* PersistanceHelper.swift */,
+			);
+			path = PersistanceHelper;
+			sourceTree = "<group>";
+		};
+		B73712382551D1FC00F1FBDB /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				548CE051234D33B500B5177D /* AppDelegate.swift */,
+				548CE053234D33B500B5177D /* SceneDelegate.swift */,
+				548CE05C234D33B600B5177D /* LaunchScreen.storyboard */,
+				B7E4B78623E8B95A0067CC6C /* Detail.storyboard */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		B782BBCD24C8DBFA00D2C14F /* WeatherAppTests */ = {
