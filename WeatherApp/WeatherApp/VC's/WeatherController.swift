@@ -48,14 +48,6 @@ class WeatherController: UIViewController {
         weatherView.textField.text = zipcodeQuery
         loadData(zipcodeQuery: zipcodeQuery)
         zipcodeQuery = UserDefaults.standard.object(forKey: "zipcodeQuery") as? String ?? "11372"
-//        updateLocation()
-    }
-    
-    private func updateLocation() {
-
-        if let location = UserSettings.shared.getLocation() {
-            zipcodeQuery = location.rawValue
-        }
     }
     
     private func getWeather(lat: Double, long: Double) {
@@ -146,8 +138,6 @@ extension WeatherController: UITextFieldDelegate {
             return true
         }
         zipcodeQuery = zipcode
-//        zipcodeQuery = UserDefaults.standard.object(forKey: "zipcodeQuery") as? String ?? "11372"
-//        updateLocation()
         return true
     }
 }

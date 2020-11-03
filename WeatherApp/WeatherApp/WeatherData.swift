@@ -27,4 +27,3 @@ struct DailyDatum: Codable {
     let moonPhase, precipIntensity, precipIntensityMax: Double
     let windSpeed: Double
 }
-
