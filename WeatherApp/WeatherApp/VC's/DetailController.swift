@@ -21,7 +21,8 @@ class DetailController: UIViewController {
 //    @IBOutlet weak var windspeedLabel: UILabel!
     
     let popUpView = PopUpView()
-    
+    let visualEffectView = UIVisualEffectView()
+    var screenEffect: UIVisualEffect?
     var detailData: DailyDatum!
     var detailImage: Picture!
     
@@ -31,7 +32,18 @@ class DetailController: UIViewController {
         super.viewDidLoad()
         view = popUpView
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveImageButtonPressed(_:)))
-//        updateUI()
+        visual()
+        visualEffectView.effect = nil
+        animateView()
+    }
+    
+    func visual() {
+        
+        if let effect = visualEffectView.effect {
+            screenEffect = effect
+        } else {
+            screenEffect = UIVisualEffect()
+        }
     }
     
 //    private func updateUI() {
@@ -71,6 +83,12 @@ class DetailController: UIViewController {
             try dataPersistence.createItem(savedImage)
         } catch {
             print("error saving: \(error)")
+        }
+    }
+    
+    func animateView() {
+        UIView.animate(withDuration: 0.4) {
+            self.visualEffectView.effect = self.screenEffect
         }
     }
     

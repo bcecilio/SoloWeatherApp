@@ -43,6 +43,8 @@ class PopUpView: UIView {
         return stack
     }()
     
+    fileprivate var visualEffectView = UIVisualEffectView()
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -55,8 +57,19 @@ class PopUpView: UIView {
     
     private func commonInit() {
 //        self.backgroundColor = .systemGray3
+//        setupBlurView()
         setupContainer()
+//        animateBlur()
     }
+    
+//    private func setupBlurView() {
+//        addSubview(blurView)
+//        blurView.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            blurView.centerXAnchor.constraint(equalTo: centerXAnchor),
+//            blurView.centerYAnchor.constraint(equalTo: centerYAnchor)
+//        ])
+//    }
 
     private func setupContainer() {
         addSubview(container)
@@ -67,5 +80,12 @@ class PopUpView: UIView {
             container.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
             container.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.45)
         ])
+        animateBlur()
+    }
+    
+    func animateBlur() {
+        UIView.animate(withDuration: 0.7) {
+            self.visualEffectView.effect = UIBlurEffect(style: .regular)
+        }
     }
 }

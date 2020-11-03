@@ -13,6 +13,8 @@ class WeatherController: UIViewController {
     
     @IBOutlet weak var placenameLabel: UILabel!
     
+    let visualEffectView = UIVisualEffectView()
+    
     private let weatherView = WeatherView()
     
     private var photos = [Picture]()
@@ -39,6 +41,7 @@ class WeatherController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        visualEffectView.effect = nil
         view.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         navigationItem.title = "Weather"
         weatherView.collectionView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
@@ -127,6 +130,7 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
 //        detailVC.dataPersistence = dataPersistence
 //        detailVC.detailData = weatherData[indexPath.row]
         detailVC.modalPresentationStyle = .popover
+//        animateBlur()
         present(detailVC, animated: true)
     }
 }
