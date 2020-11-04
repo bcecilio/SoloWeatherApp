@@ -56,7 +56,7 @@ class PopUpView: UIView {
     }
     
     private func commonInit() {
-//        self.backgroundColor = .systemGray3
+        self.backgroundColor = UIColor.black.withAlphaComponent(0.4)
 //        setupBlurView()
         setupContainer()
 //        animateBlur()

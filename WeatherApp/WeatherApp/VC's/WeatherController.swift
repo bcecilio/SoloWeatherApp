@@ -122,6 +122,10 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = DetailController()
+        self.addChild(detailVC)
+        detailVC.view.frame = self.view.frame
+        self.view.addSubview(detailVC.view)
+        detailVC.didMove(toParent: self)
 //        guard let detailVC = detailStoryboard.instantiateViewController(identifier: "DetailController") as? DetailController else {
 //            fatalError("could not downcast to DETAILCONTROLLER")
 //        }
@@ -129,9 +133,9 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
 //        detailVC.detailImage = aPicture
 //        detailVC.dataPersistence = dataPersistence
 //        detailVC.detailData = weatherData[indexPath.row]
-        detailVC.modalPresentationStyle = .popover
+//        detailVC.modalPresentationStyle = .popover
 //        animateBlur()
-        present(detailVC, animated: true)
+//        present(detailVC, animated: true)
     }
 }
 
