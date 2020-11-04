@@ -30,7 +30,7 @@ class PopUpView: UIView {
         return label
     }()
     
-    private lazy var container: UIView = {
+    public lazy var container: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 24
@@ -43,7 +43,7 @@ class PopUpView: UIView {
         return stack
     }()
     
-    fileprivate var visualEffectView = UIVisualEffectView()
+    public var visualEffectView = UIVisualEffectView()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -56,20 +56,8 @@ class PopUpView: UIView {
     }
     
     private func commonInit() {
-        self.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-//        setupBlurView()
         setupContainer()
-//        animateBlur()
     }
-    
-//    private func setupBlurView() {
-//        addSubview(blurView)
-//        blurView.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            blurView.centerXAnchor.constraint(equalTo: centerXAnchor),
-//            blurView.centerYAnchor.constraint(equalTo: centerYAnchor)
-//        ])
-//    }
 
     private func setupContainer() {
         addSubview(container)
@@ -80,12 +68,5 @@ class PopUpView: UIView {
             container.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
             container.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.45)
         ])
-        animateBlur()
-    }
-    
-    func animateBlur() {
-        UIView.animate(withDuration: 0.7) {
-            self.visualEffectView.effect = UIBlurEffect(style: .regular)
-        }
     }
 }

@@ -32,18 +32,7 @@ class DetailController: UIViewController {
         super.viewDidLoad()
         view = popUpView
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveImageButtonPressed(_:)))
-        visual()
-        visualEffectView.effect = nil
-        animateView()
-    }
-    
-    func visual() {
-        
-        if let effect = visualEffectView.effect {
-            screenEffect = effect
-        } else {
-            screenEffect = UIVisualEffect()
-        }
+        popUpView.visualEffectView.bounds = self.view.bounds
     }
     
 //    private func updateUI() {
@@ -86,9 +75,16 @@ class DetailController: UIViewController {
         }
     }
     
-    func animateView() {
+    public func animateView(desiredView: UIView) {
+//            let backgroundView = self.view
+            // attach our desired view to the screen
+            view.addSubview(desiredView)
+            // sets the view's scaling to be 120%
+            desiredView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            desiredView.alpha = 0
         UIView.animate(withDuration: 0.4) {
-            self.visualEffectView.effect = self.screenEffect
+            desiredView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            desiredView.alpha = 1.0
         }
     }
     
