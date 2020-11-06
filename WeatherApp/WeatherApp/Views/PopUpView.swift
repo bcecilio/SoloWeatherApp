@@ -15,17 +15,17 @@ class PopUpView: UIView {
         return label
     }()
     
-    private lazy var sunriseLabel: UILabel = {
+    public lazy var sunriseLabel: UILabel = {
         let label = UILabel()
         return label
     }()
     
-    private lazy var sunsetLabel: UILabel = {
+    public lazy var sunsetLabel: UILabel = {
         let label = UILabel()
         return label
     }()
     
-    private lazy var highLow: UILabel = {
+    public lazy var highLow: UILabel = {
         let label = UILabel()
         return label
     }()
@@ -56,6 +56,7 @@ class PopUpView: UIView {
     }
     
     private func commonInit() {
+        backgroundColor = UIColor.black.withAlphaComponent(0.4)
         setupContainer()
     }
 
