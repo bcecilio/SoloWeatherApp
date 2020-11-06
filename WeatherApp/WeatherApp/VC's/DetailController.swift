@@ -12,14 +12,6 @@ import DataPersistence
 
 class DetailController: UIViewController {
     
-//    @IBOutlet weak var imageView: UIImageView!
-//    @IBOutlet weak var placenameLabel: UILabel!
-//    @IBOutlet weak var sunriseLabel: UILabel!
-//    @IBOutlet weak var sunsetLabel: UILabel!
-//    @IBOutlet weak var highLabel: UILabel!
-//    @IBOutlet weak var lowLabel: UILabel!
-//    @IBOutlet weak var windspeedLabel: UILabel!
-    
     let popUpView = PopUpView()
     let visualEffectView = UIVisualEffectView()
     var screenEffect: UIVisualEffect?
@@ -33,6 +25,20 @@ class DetailController: UIViewController {
         view = popUpView
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveImageButtonPressed(_:)))
         popUpView.visualEffectView.bounds = self.view.bounds
+    }
+    
+    private func updateUI() {
+                guard let data = detailData else {
+                    print("data no found hehehe")
+                    return
+                }
+                guard let photo = detailImage else {
+                    print("no image in detail")
+                    return
+                }
+        popUpView.sunriseLabel.text = String(data.sunriseTime)
+        popUpView.highLow.text = "High: \(data.temperatureHigh) Low: \(data.temperatureLow)"
+        popUpView.sunsetLabel.text = String(data.sunsetTime)
     }
     
 //    private func updateUI() {

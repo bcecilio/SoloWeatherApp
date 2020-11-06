@@ -10,7 +10,7 @@ import UIKit
 
 class PopUpView: UIView {
 
-    fileprivate var cityLabel: UILabel = {
+    public var cityLabel: UILabel = {
         let label = UILabel()
         return label
     }()
