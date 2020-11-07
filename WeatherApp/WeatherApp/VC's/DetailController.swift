@@ -14,6 +14,7 @@ class DetailController: UIViewController {
     
     let popUpView = PopUpView()
     let visualEffectView = UIVisualEffectView()
+//    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(closeView))
     var screenEffect: UIVisualEffect?
     var detailData: DailyDatum!
     var detailImage: Picture!
@@ -23,9 +24,17 @@ class DetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = popUpView
+//        popUpView.addGestureRecognizer(tapGesture)
         updateUI()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveImageButtonPressed(_:)))
 //        popUpView.visualEffectView.bounds = self.view.bounds
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        var touch: UITouch? = touches.first
+        if touch?.view == popUpView {
+            self.presentingViewController?.dismiss(animated: true, completion: nil)
+        }
     }
     
     private func updateUI() {
@@ -40,6 +49,10 @@ class DetailController: UIViewController {
         popUpView.sunriseLabel.text = String(data.sunriseTime)
         popUpView.highLow.text = "High: \(data.temperatureHigh) Low: \(data.temperatureLow)"
         popUpView.sunsetLabel.text = String(data.sunsetTime)
+    }
+    
+    @objc func closeView() {
+        self.dismiss(animated: true, completion: nil)
     }
     
 //    private func updateUI() {
