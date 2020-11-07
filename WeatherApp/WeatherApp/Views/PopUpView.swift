@@ -12,21 +12,25 @@ class PopUpView: UIView {
 
     public var cityLabel: UILabel = {
         let label = UILabel()
+        label.text = "Current City"
         return label
     }()
     
     public lazy var sunriseLabel: UILabel = {
         let label = UILabel()
+        label.text = "Sunrise Label"
         return label
     }()
     
     public lazy var sunsetLabel: UILabel = {
         let label = UILabel()
+        label.text = "Sunset Label"
         return label
     }()
     
     public lazy var highLow: UILabel = {
         let label = UILabel()
+        label.text = "high:  low:"
         return label
     }()
     
@@ -58,6 +62,7 @@ class PopUpView: UIView {
     private func commonInit() {
         backgroundColor = UIColor.black.withAlphaComponent(0.4)
         setupContainer()
+        setupStackView()
     }
 
     private func setupContainer() {
@@ -68,6 +73,15 @@ class PopUpView: UIView {
             container.centerXAnchor.constraint(equalTo: centerXAnchor),
             container.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
             container.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.45)
+        ])
+    }
+    
+    private func setupStackView() {
+        container.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
 }

@@ -23,8 +23,9 @@ class DetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = popUpView
+        updateUI()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveImageButtonPressed(_:)))
-        popUpView.visualEffectView.bounds = self.view.bounds
+//        popUpView.visualEffectView.bounds = self.view.bounds
     }
     
     private func updateUI() {

@@ -41,9 +41,9 @@ class WeatherController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        visualEffectView.effect = nil
+//        visualEffectView.effect = nil
         view.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
-        navigationItem.title = "Weather"
+//        navigationItem.title = "Weather"
         weatherView.collectionView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
         weatherView.collectionView.delegate = self
         weatherView.collectionView.dataSource = self
@@ -130,9 +130,9 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
 //            fatalError("could not downcast to DETAILCONTROLLER")
 //        }
         let aPicture = photos[indexPath.row]
-//        detailVC.detailImage = aPicture
-//        detailVC.dataPersistence = dataPersistence
-//        detailVC.detailData = weatherData[indexPath.row]
+        detailVC.detailImage = aPicture
+        detailVC.dataPersistence = dataPersistence
+        detailVC.detailData = weatherData[indexPath.row]
         detailVC.modalPresentationStyle = .overCurrentContext
 //        animateBlur()
         present(detailVC, animated: true)
