@@ -47,7 +47,11 @@ class PopUpView: UIView {
         return stack
     }()
     
-    public var visualEffectView = UIVisualEffectView()
+    public var visualEffectView: UIVisualEffectView = {
+        let blur = UIBlurEffect(style: .light)
+        let view = UIVisualEffectView(effect: blur)
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -60,9 +64,12 @@ class PopUpView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = UIColor.black.withAlphaComponent(0.4)
+//        backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        setupBlurEffect()
         setupContainer()
         setupStackView()
+//        setupBlurEffect()
+        animateBlurView()
     }
 
     private func setupContainer() {
@@ -83,5 +90,24 @@ class PopUpView: UIView {
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             stackView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
+    }
+    
+    private func setupBlurEffect() {
+        addSubview(visualEffectView)
+        visualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            visualEffectView.topAnchor.constraint(equalTo: topAnchor),
+            visualEffectView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            visualEffectView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            visualEffectView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+    }
+    
+    func animateBlurView() {
+        
+    UIView.animate(withDuration: 0.4) {
+        self.visualEffectView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        self.visualEffectView.alpha = 1.0
+    }
     }
 }

@@ -13,8 +13,7 @@ import DataPersistence
 class DetailController: UIViewController {
     
     let popUpView = PopUpView()
-    let visualEffectView = UIVisualEffectView()
-//    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(closeView))
+    let blurView = UIVisualEffectView()//    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(closeView))
     var screenEffect: UIVisualEffect?
     var detailData: DailyDatum!
     var detailImage: Picture!
@@ -24,6 +23,8 @@ class DetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = popUpView
+        blurView.bounds = self.view.bounds
+//        animateView(desiredView: popUpView.visualEffectView)
 //        popUpView.addGestureRecognizer(tapGesture)
         updateUI()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveImageButtonPressed(_:)))
@@ -31,8 +32,8 @@ class DetailController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        var touch: UITouch? = touches.first
-        if touch?.view == popUpView {
+        let touch: UITouch? = touches.first
+        if touch?.view == popUpView.visualEffectView {
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
@@ -96,9 +97,9 @@ class DetailController: UIViewController {
     }
     
     public func animateView(desiredView: UIView) {
-//            let backgroundView = self.view
+            let backgroundView = self.view!
             // attach our desired view to the screen
-            view.addSubview(desiredView)
+            backgroundView.addSubview(desiredView)
             // sets the view's scaling to be 120%
             desiredView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             desiredView.alpha = 0
