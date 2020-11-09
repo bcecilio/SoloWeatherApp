@@ -69,7 +69,7 @@ class PopUpView: UIView {
         setupContainer()
         setupStackView()
 //        setupBlurEffect()
-        animateBlurView()
+//        animateBlurView()
     }
 
     private func setupContainer() {
@@ -103,11 +103,11 @@ class PopUpView: UIView {
         ])
     }
     
-    func animateBlurView() {
-        
-    UIView.animate(withDuration: 0.4) {
-        self.visualEffectView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        self.visualEffectView.alpha = 1.0
-    }
-    }
+//    func animateBlurView() {
+//        
+//    UIView.animate(withDuration: 0.4) {
+//        self.visualEffectView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+//        self.visualEffectView.alpha = 1.0
+//    }
+//    }
 }

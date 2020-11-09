@@ -14,7 +14,8 @@ class DetailController: UIViewController {
     
     let popUpView = PopUpView()
     let blurView = UIVisualEffectView()//    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(closeView))
-    var screenEffect: UIVisualEffect?
+//    var blurEffect: UIBlurEffect!
+    let visualEffect = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     var detailData: DailyDatum!
     var detailImage: Picture!
     
@@ -23,12 +24,13 @@ class DetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = popUpView
-        blurView.bounds = self.view.bounds
+//        blurView.bounds = self.view.bounds
 //        animateView(desiredView: popUpView.visualEffectView)
 //        popUpView.addGestureRecognizer(tapGesture)
         updateUI()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveImageButtonPressed(_:)))
 //        popUpView.visualEffectView.bounds = self.view.bounds
+        animateView()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -96,17 +98,15 @@ class DetailController: UIViewController {
         }
     }
     
-    public func animateView(desiredView: UIView) {
-            let backgroundView = self.view!
-            // attach our desired view to the screen
-            backgroundView.addSubview(desiredView)
-            // sets the view's scaling to be 120%
-            desiredView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-            desiredView.alpha = 0
+    public func animateView() {
+        func animateBlurView() {
+            
         UIView.animate(withDuration: 0.4) {
-            desiredView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            desiredView.alpha = 1.0
+            self.visualEffect.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            self.visualEffect.alpha = 1.0
         }
+        }
+
     }
     
 }
