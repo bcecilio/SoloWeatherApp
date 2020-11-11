@@ -28,7 +28,7 @@ class DetailController: UIViewController {
 //        animateView(desiredView: popUpView.visualEffectView)
 //        popUpView.addGestureRecognizer(tapGesture)
         updateUI()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveImageButtonPressed(_:)))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveImageButtonPressed(_:)))
 //        popUpView.visualEffectView.bounds = self.view.bounds
         animateView()
     }

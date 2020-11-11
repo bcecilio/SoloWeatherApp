@@ -133,6 +133,8 @@ extension WeatherController: UICollectionViewDelegateFlowLayout, UICollectionVie
         detailVC.detailImage = aPicture
         detailVC.dataPersistence = dataPersistence
         detailVC.detailData = weatherData[indexPath.row]
+//        detailVC.transition(from: WeatherController(), to: detailVC, duration: 0.4, options: .transitionCrossDissolve, animations: nil, completion: nil)
+        detailVC.modalTransitionStyle = .crossDissolve
         detailVC.modalPresentationStyle = .overCurrentContext
 //        animateBlur()
         present(detailVC, animated: true)
